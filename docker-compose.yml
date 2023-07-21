@@ -1,0 +1,16 @@
+version: '3.8'
+
+
+services:
+
+  web:
+    build: ./dcelery
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./dcelery/:/usr/src/app/
+    ports: 
+      - 8001:8000
+    environment:
+      - DEBUG=1
+      - SECRET_KEY=(k2%rddp=8v&q&&9s$c!!^!&ja3cc7kb*#9r+26l=3ingfuznx
+      - DJANGO_ALLOWED_HOSTS=localhost,127.0.0.1
