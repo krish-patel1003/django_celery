@@ -38,4 +38,20 @@ services:
 
   redis:
     image: redis:7-alpine
-    
+  
+
+  dashboard:
+    build: ./dcelery
+    command: celery flower -A dcelery --port=5555 --broker=redis://redis:6379/0
+    ports:
+      - 5555:5555
+    environment:
+      - DEBUG=1
+      - SECRET_KEY=(k2%rddp=8v&q&&9s$c!!^!&ja3cc7kb*#9r+26l=3ingfuznx
+      - DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]
+      - CELERY_BROKER=redis://redis:6379/0
+      - CELERY_BACKEND=redis://redis:6379/0
+    depends_on:
+      - web
+      - redis
+      - celery
