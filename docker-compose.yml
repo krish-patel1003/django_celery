@@ -22,7 +22,7 @@ services:
   
   celery:
     build: ./dcelery
-    command: celery --app=dcelery worker --loglevel=info
+    command: celery --app=dcelery worker --loglevel=info --logfile=logs/celery.log
     volumes:
       - ./dcelery/:/usr/src/app/
     environment: 
